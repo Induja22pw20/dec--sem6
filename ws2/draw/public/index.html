@@ -1,54 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collaborative Drawing</title>
     <style>
+        body, html {
+            margin: 0;
+            overflow: hidden;
+        }
         canvas {
-            border: 1px solid black;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <canvas id="drawingCanvas"></canvas>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
-        const socket = io();
-
-        let drawing = false;
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        canvas.addEventListener('mousedown', () => { drawing = true; });
-        canvas.addEventListener('mouseup', () => { drawing = false; });
-        canvas.addEventListener('mousemove', draw);
+        let drawing = false;
 
-        function draw(event) {
-            if (!drawing) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+        const socket = io();
 
-            context.lineTo(x, y);
-            context.stroke();
-            context.beginPath();
-            context.moveTo(x, y);
-
-            socket.emit('drawing', { x, y });
+        // Draw on canvas
+        function draw(x, y) {
+            ctx.lineTo(x, y);
+            ctx.stroke();
         }
 
-        socket.on('drawing', (data) => {
-            context.lineTo(data.x, data.y);
-            context.stroke();
-            context.beginPath();
-            context.moveTo(data.x, data.y);
+        // Handle mouse events
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!drawing) return;
+            draw(e.clientX, e.clientY);
+
+            // Emit drawing data
+            socket.emit('draw', { x: e.clientX, y: e.clientY });
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+        });
+
+        // Listen for drawing data from other users
+        socket.on('draw', (data) => {
+            ctx.lineTo(data.x, data.y);
+            ctx.stroke();
         });
     </script>
 </body>
