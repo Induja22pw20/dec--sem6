@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application7</string>
+    <string-array name="my_spinner_items">
+        <item>Select A Country</item>
+        <item>USA</item>
+        <item>UK</item>
+        <item>India</item>
+    </string-array>
+</resources>
