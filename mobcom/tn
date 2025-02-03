@@ -1,0 +1,351 @@
+
+Activity_main.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <ImageView
+       android:id="@+id/imageView6"
+       android:layout_width="1200dp"
+       android:layout_height="1400dp"
+       android:alpha="0.2"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.886"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.502"
+       app:srcCompat="@drawable/_557967" />
+
+
+   <ImageView
+       android:id="@+id/imageView7"
+       android:layout_width="107dp"
+       android:layout_height="106dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.049"
+       app:srcCompat="@drawable/tamilnadu_logo_svg" />
+
+
+
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:fontFamily="@font/anton"
+       android:text="PUBLIC DISTRIBUTION SYSTEM"
+       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+       android:textColor="#BF5D06"
+       android:textSize="28sp"
+       android:typeface="monospace"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.495"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.199" />
+
+
+
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Enter the Captcha you see below"
+       android:textColor="#D1700A"
+       android:textSize="20sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.537"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.465" />
+
+
+
+
+   <EditText
+       android:id="@+id/editTextBox"
+       android:layout_width="379dp"
+       android:layout_height="61dp"
+       android:layout_margin="16dp"
+       android:background="@drawable/input_box"
+       android:hint="Mobile Number"
+       android:textAlignment="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.331" />
+
+
+
+
+   <ImageView
+       android:id="@+id/imageView10"
+       android:layout_width="49dp"
+       android:layout_height="54dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.044"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.341"
+       app:srcCompat="@drawable/images" />
+
+
+
+
+   <TextView
+       android:id="@+id/editTextBox2"
+       android:layout_width="379dp"
+       android:layout_height="61dp"
+       android:layout_margin="16dp"
+       android:background="@drawable/input_box"
+       android:backgroundTint="#FFFFF9"
+       android:drawableTint="#CEB5B5"
+       android:fontFamily="sans-serif"
+       android:foregroundTint="#998B8B"
+       android:hint=""
+       android:shadowColor="#8A8484"
+       android:text="hygy"
+       android:textAlignment="center"
+       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+       android:textColorHighlight="#B8B6B6"
+       android:textColorHint="#7A1515"
+       android:textSize="24sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.812"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.564" />
+
+
+
+
+   <EditText
+       android:id="@+id/editTextBox3"
+       android:layout_width="379dp"
+       android:layout_height="61dp"
+       android:layout_margin="16dp"
+       android:background="@drawable/input_box"
+       android:hint="   Enter the Captcha"
+       android:textAlignment="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.781"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.689" />
+
+
+
+
+   <Button
+       android:id="@+id/button5"
+       android:layout_width="374dp"
+       android:layout_height="63dp"
+       android:backgroundTint="#FD7E0E"
+       android:text="Submit"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.792" />
+
+
+
+
+   <TextView
+       android:id="@+id/textView3"
+       android:layout_width="240dp"
+       android:layout_height="58dp"
+       android:text="CS &amp; CP Department, Government of Tamil Nadu"
+       android:textAlignment="center"
+       android:textAllCaps="true"
+       android:textColor="#817D7D"
+       android:textSize="14sp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.497"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.956" />
+
+
+
+
+   <ImageView
+       android:id="@+id/imageView11"
+       android:layout_width="47dp"
+       android:layout_height="41dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.931"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.556"
+       app:srcCompat="@drawable/refresh" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+Input_box.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+   <solid android:color="@android:color/white" />
+   <corners android:radius="4dp" />
+   <padding android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp" />
+</shape>
+
+MainActivity.kt : 
+
+package com.example.myapplication
+
+
+
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.content.Intent
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+
+
+
+class MainActivity : AppCompatActivity() {
+   private lateinit var captchaTextView: TextView
+   private lateinit var captchaInput: EditText
+   private lateinit var mobileNumberInput: EditText
+   private lateinit var submitButton: Button
+   private var generatedCaptcha: String = ""
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main)
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+       captchaTextView = findViewById(R.id.editTextBox2)
+       captchaInput = findViewById(R.id.editTextBox3)
+       mobileNumberInput = findViewById(R.id.editTextBox)
+       submitButton = findViewById(R.id.button5)
+       generateCaptcha()
+       submitButton.setOnClickListener {
+           validateAndSubmit()
+
+
+       }
+
+
+   }
+   private fun generateCaptcha() {
+       val characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+       generatedCaptcha = (1..6).map { characters.random() }.joinToString("")
+       captchaTextView.text = "$generatedCaptcha"
+   }
+   private fun validateAndSubmit() {
+       val mobileNumber = mobileNumberInput.text.toString()
+       val captcha = captchaInput.text.toString()
+       if (mobileNumber.length != 10 || !mobileNumber.all { it.isDigit() }) {
+           mobileNumberInput.error = "Invalid mobile number"
+           return
+       }
+       if (captcha != generatedCaptcha) {
+           captchaInput.error = "Captcha does not match"
+           return
+       }
+       val intent = Intent(this, MainActivity2::class.java).apply {
+           putExtra("MOBILE_NUMBER", mobileNumber)
+       }
+       startActivity(intent)
+   }
+}
+
+
+
+MainActivity2.kt : 
+
+package com.example.myapplication
+
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity2 : AppCompatActivity() {
+   @SuppressLint("MissingInflatedId")
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main2)
+       val mobileNumber = intent.getStringExtra("MOBILE_NUMBER")
+       val welcomeTextView = findViewById<TextView>(R.id.welcomeTextView)
+       welcomeTextView.text = "Welcome!" +
+               "\n Your mobile number is \n$mobileNumber"
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+}
+
+Activity_main2.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity2">
+
+
+   <TextView
+       android:id="@+id/welcomeTextView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:fontFamily="@font/alfa_slab_one"
+       android:text="Welcome!"
+       android:textAlignment="center"
+       android:textSize="24sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.54"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.475" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
