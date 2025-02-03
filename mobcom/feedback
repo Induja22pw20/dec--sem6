@@ -1,0 +1,249 @@
+Activity_main.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:background="#E71111"
+   android:backgroundTint="#FDF7F7"
+   android:foregroundTint="#0B0000"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="277dp"
+       android:layout_height="47dp"
+       android:foregroundTint="#FDD3D3"
+       android:text="We hope you enjoyed your meal with us today"
+       android:textAlignment="center"
+       android:textColor="#A88747"
+       android:textSize="16sp"
+       android:textStyle="italic"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.171" />
+
+
+   <RatingBar
+       android:id="@+id/ratingBar"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:progressTint="#F40A0A"
+       android:stepSize="1"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.438"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.301" />
+
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text=""
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.38" />
+
+
+   <EditText
+       android:id="@+id/editTextTextMultiLine"
+       android:layout_width="327dp"
+       android:layout_height="85dp"
+       android:backgroundTint="#E60F36"
+       android:drawableTint="#F86969"
+       android:ems="10"
+       android:foregroundTint="#FD0D0D"
+       android:gravity="start|top"
+       android:inputType="textMultiLine"
+       android:textColor="#180A0A"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.578"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.499" />
+
+
+   <Button
+       android:id="@+id/button2"
+       android:layout_width="263dp"
+       android:layout_height="47dp"
+       android:backgroundTint="#ED7676"
+       android:text="SEND FEEDBACK"
+       app:circularflow_defaultRadius="0dp"
+       app:cornerRadius="0dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.506"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.624"
+       app:rippleColor="#B41414" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+Activity_main2.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity2">
+
+
+   <TextView
+       android:id="@+id/textView3"
+       android:layout_width="245dp"
+       android:layout_height="24dp"
+       android:text="The Feedback sent was, "
+       android:textColor="#9E691F"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.439"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.312" />
+
+
+   <TextView
+       android:id="@+id/textView4"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textAlignment="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.498"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.41" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt : 
+
+package com.example.feedback
+
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RatingBar
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity : AppCompatActivity() {
+
+
+   private lateinit var ratingBar: RatingBar
+   private lateinit var ratingMessage: TextView
+   private lateinit var feedbackEditText: EditText
+   private lateinit var sendFeedbackButton: Button
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main)
+       ratingBar = findViewById(R.id.ratingBar)
+       ratingMessage = findViewById(R.id.textView)
+       feedbackEditText = findViewById(R.id.editTextTextMultiLine)
+       sendFeedbackButton = findViewById(R.id.button2)
+
+
+       ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+           val ratingInt = rating.toInt()
+           when (ratingInt) {
+               5 -> ratingMessage.text = getString(R.string.awesome_text)
+               4 -> ratingMessage.text = getString(R.string.good_text)
+               3 -> ratingMessage.text = getString(R.string.satisfied_text)
+               2 -> ratingMessage.text = getString(R.string.not_good_text)
+               1 -> ratingMessage.text = getString(R.string.disappointed_text)
+               else -> ratingMessage.text = ""
+           }
+       }
+
+
+       sendFeedbackButton.setOnClickListener {
+           val feedback = feedbackEditText.text.toString()
+           if (feedback.isEmpty()) {
+               feedbackEditText.error = getString(R.string.feedback_required)
+           } else if (feedback.length > 100) {
+               feedbackEditText.error = getString(R.string.feedback_length_error)
+           } else {
+               val intent = Intent(this, MainActivity2::class.java)
+               intent.putExtra("FEEDBACK_MESSAGE", feedback)
+               startActivity(intent)
+           }
+       }
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+}
+
+
+MainActivity2.kt : 
+
+package com.example.feedback
+
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.widget.TextView
+class MainActivity2 : AppCompatActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main2)
+       val feedbackTextView: TextView = findViewById(R.id.textView4)
+       val feedback = intent.getStringExtra("FEEDBACK_MESSAGE")
+       feedbackTextView.text = feedback
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+}
+
+
+Strings.xml : 
+
+<resources>
+   <string name="app_name">Feedback</string>
+   <string name="awesome_text">Awesome. I love it</string>
+   <string name="good_text">Good. Enjoyed it</string>
+   <string name="satisfied_text">Satisfied.</string>
+   <string name="not_good_text">Not good. Need improvement</string>
+   <string name="disappointed_text">Disappointed. Very poor</string>
+   <string name="feedback_required">Message is required</string>
+   <string name="feedback_length_error">Maximum characters allowed is 100</string>
+   <string name="feedback_display">Your feedback: %1$s</string>
+</resources>
+
+Output : 
