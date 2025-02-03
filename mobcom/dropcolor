@@ -1,0 +1,223 @@
+In res/menu/menu.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item
+       android:id="@+id/red"
+       android:title="Red" />
+   <item
+       android:id="@+id/green"
+       android:title="Green" />
+   <item
+       android:id="@+id/yellow"
+       android:title="Yellow" />  <!-- Added Yellow -->
+   <item
+       android:id="@+id/blue"
+       android:title="Blue" />
+</menu>
+
+In res/menu/popup_menu.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item
+       android:id="@+id/small"
+       android:title="Small" />
+   <item
+       android:id="@+id/medium"
+       android:title="Medium" />
+   <item
+       android:id="@+id/large"
+       android:title="Large" />
+   <item
+       android:id="@+id/changeTextColor"
+       android:title="Change Text Color" />
+</menu>
+
+In res/values/dimens.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <dimen name="text_size_small">30sp</dimen>
+   <dimen name="text_size_medium">50sp</dimen>
+   <dimen name="text_size_large">70sp</dimen>
+</resources>
+
+In res/values/colors.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <color name="black">#FF000000</color>
+   <color name="white">#FFFFFFFF</color>
+   <color name="colorRed">#FF0000</color>
+   <color name="colorGreen">#00FF00</color>
+   <color name="colorYellow">#FFFF00</color>
+   <color name="colorBlue">#0000FF</color>
+   <color name="colorBlack">#000000</color>
+   <color name="colorWhite">#FFFFFF</color>
+</resources>
+
+In activity_main.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:id="@+id/formatTextView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Format Me !"
+       android:textSize="30dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+In MainActivity.kt : 
+
+package com.example.myapplication
+
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.graphics.Color
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.PopupMenu
+import android.widget.TextView
+import kotlin.random.Random
+
+
+class MainActivity : AppCompatActivity() {
+   private lateinit var formatTextView: TextView
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main)
+       formatTextView = findViewById(R.id.formatTextView)
+
+
+       formatTextView.setOnClickListener {
+           showPopupMenu(it)
+       }
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+       menuInflater.inflate(R.menu.menu, menu)
+       return true
+   }
+
+
+   override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       return when (item.itemId) {
+           R.id.red -> {
+               changeBackgroundColor(R.color.colorRed)
+               true
+           }
+           R.id.green -> {
+               changeBackgroundColor(R.color.colorGreen)
+               true
+           }
+           R.id.yellow -> {
+               changeBackgroundColor(R.color.colorYellow)
+               true
+           }
+           R.id.blue -> {
+               changeBackgroundColor(R.color.colorBlue)
+               true
+           }
+           else -> super.onOptionsItemSelected(item)
+       }
+   }
+
+
+   private fun changeBackgroundColor(colorResId: Int) {
+       window.decorView.setBackgroundColor(resources.getColor(colorResId, theme))
+   }
+
+
+   private fun showPopupMenu(view: android.view.View) {
+       val popup = PopupMenu(this, view)
+       popup.menuInflater.inflate(R.menu.popup_menu, popup.menu)
+       popup.setOnMenuItemClickListener { menuItem ->
+           when (menuItem.itemId) {
+               R.id.small -> {
+                   formatTextView.textSize = resources.getDimension(R.dimen.text_size_small) / resources.displayMetrics.scaledDensity
+                   true
+               }
+               R.id.medium -> {
+                   formatTextView.textSize = resources.getDimension(R.dimen.text_size_medium) / resources.displayMetrics.scaledDensity
+                   true
+               }
+               R.id.large -> {
+                   formatTextView.textSize = resources.getDimension(R.dimen.text_size_large) / resources.displayMetrics.scaledDensity
+                   true
+               }
+               R.id.changeTextColor -> {
+                   changeTextColorRandomly()
+                   true
+               }
+               else -> false
+           }
+       }
+       popup.show()
+   }
+
+
+   private fun changeTextColorRandomly() {
+       val randomColor = Color.rgb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
+       formatTextView.setTextColor(randomColor)
+   }
+
+
+}
+
+In AndroidManifest.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools">
+
+
+   <application
+       android:allowBackup="true"
+       android:dataExtractionRules="@xml/data_extraction_rules"
+       android:fullBackupContent="@xml/backup_rules"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+       tools:targetApi="31">
+       <activity
+           android:name=".MainActivity"
+           android:exported="true">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+
+
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>
+   </application>
+
+
+</manifest>
