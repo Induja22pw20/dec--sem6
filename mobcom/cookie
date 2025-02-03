@@ -1,0 +1,113 @@
+Activity_main.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:background="#8873AF"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:id="@+id/textview"
+       android:layout_width="118dp"
+       android:layout_height="19dp"
+       android:text="@string/name1"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.542"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.615" />
+
+
+   <ImageView
+       android:id="@+id/imageView"
+       android:layout_width="366dp"
+       android:layout_height="289dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.478"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.256"
+       app:srcCompat="@drawable/before" />
+
+
+   <Button
+       android:id="@+id/button"
+       android:layout_width="161dp"
+       android:layout_height="71dp"
+       android:text="Button"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.556"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.722" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+Strings.xml : 
+
+<resources>
+   <string name="app_name">Cookiemonster_app</string>
+   <string name="button1">Eat Cookie</string>
+   <string name="button2">Done</string>
+   <string name="name1">IM HUNGRY !!!!!!</string>
+   <string name="name2">IM FULL !!!!!</string>
+</resources>
+
+Colors.xml : 
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <color name="black">#FF000000</color>
+   <color name="white">#FFFFFFFF</color>
+</resources>
+
+MainActivity.kt : 
+
+package com.example.cookiemonster_app
+
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity : AppCompatActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main)
+       val button1 = findViewById<Button>(R.id.button) as Button
+       val tv1 = findViewById<TextView>(R.id.textview) as TextView
+       val img1 = findViewById<ImageView>(R.id.imageView) as ImageView
+       val button2 = findViewById<Button>(R.id.button) as Button
+       button1.setOnClickListener()
+       {
+           tv1.text = getString(R.string.name2)
+           img1.setImageResource(R.drawable.after)
+           button1.text=getString(R.string.button2)
+
+
+       }
+
+
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+}
