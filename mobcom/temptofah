@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/main"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".MainActivity">
+
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Enter temperature in farenheit"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.205"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.26" />
+
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Enter temperature in celcius"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.192"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.138" />
+
+
+   <EditText
+       android:id="@+id/editTextText"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:inputType="text"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.203"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:hint="Celcius"
+       app:layout_constraintVertical_bias="0.192" />
+
+
+
+
+   <EditText
+       android:id="@+id/editTextText2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:ems="10"
+       android:inputType="text"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.203"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:hint="Farenheit"
+       app:layout_constraintVertical_bias="0.32" />
+
+
+   <TextView
+       android:id="@+id/textView2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:fontFamily="sans-serif-black"
+       android:text="My Temperature converter"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.207"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.09" />
+
+
+   <Button
+       android:id="@+id/button"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:backgroundTint="@color/material_dynamic_neutral30"
+       android:text="Convert temp"
+       app:iconTint="@color/material_dynamic_neutral50"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.148"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.411"
+       app:rippleColor="@color/white"
+       app:strokeColor="@color/material_dynamic_neutral30" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+
+package com.example.temperature_converter
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+
+class MainActivity : AppCompatActivity() {
+   override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       enableEdgeToEdge()
+       setContentView(R.layout.activity_main)
+       val button1 = findViewById<Button>(R.id.button)
+       val tv1 = findViewById<EditText>(R.id.editTextText)
+       val tv2 = findViewById<EditText>(R.id.editTextText2)
+
+
+       button1.setOnClickListener {
+           val c = tv1.text.toString()
+           val f = tv2.text.toString()
+           if (c.isNotEmpty()) {
+               val celsius = c.toDouble()
+               val fahrenheit = (celsius * 9 / 5) + 32
+               Toast.makeText(this, "Fahrenheit: %.2f".format(fahrenheit), Toast.LENGTH_SHORT).show()
+               tv2.setText(fahrenheit.toString())
+           } else if (f.isNotEmpty()) {
+               val fahrenheit = f.toDouble()
+               val celsius = (fahrenheit - 32) * 5 / 9
+               Toast.makeText(this, "Celsius: %.2f".format(celsius), Toast.LENGTH_SHORT).show()
+               tv1.setText(celsius.toString())
+           } else {
+               Toast.makeText(this, "Please enter a value", Toast.LENGTH_SHORT).show()
+           }
+       }
+
+
+       ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+           val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+           v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+           insets
+       }
+   }
+}
