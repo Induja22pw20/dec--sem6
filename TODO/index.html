@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Microservices App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-6 text-center">Todo Microservices Application</h1>
+        
+        <!-- Users Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Users</h2>
+            <div class="mb-4">
+                <input id="usernameInput" type="text" placeholder="Enter username" 
+                       class="border p-2 rounded mr-2">
+                <button onclick="fetchUser()" 
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Search User
+                </button>
+                <button onclick="fetchAllUsers()" 
+                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    List All Users
+                </button>
+            </div>
+            <div id="usersOutput" class="bg-white p-4 rounded shadow"></div>
+        </div>
+
+        <!-- Todos Section -->
+        <div>
+            <h2 class="text-2xl font-semibold mb-4">Todos</h2>
+            <div class="mb-4">
+                <input id="todoUsernameInput" type="text" placeholder="Enter username for todos" 
+                       class="border p-2 rounded mr-2">
+                <button onclick="fetchTodos()" 
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Search Todos
+                </button>
+                <button onclick="fetchAllTodos()" 
+                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                    List All Todos
+                </button>
+            </div>
+            <div id="todosOutput" class="bg-white p-4 rounded shadow"></div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchAllUsers() {
+            try {
+                const response = await fetch('http://localhost:5002/api/users');
+                const users = await response.json();
+                displayUsers(users);
+            } catch (error) {
+                displayUsers({ error: 'Failed to fetch users' });
+            }
+        }
+
+        async function fetchUser() {
+            const username = document.getElementById('usernameInput').value;
+            if (!username) return;
+            try {
+                const response = await fetch(`http://localhost:5002/api/users/${username}`);
+                const user = await response.json();
+                displayUsers(user);
+            } catch (error) {
+                displayUsers({ error: 'Failed to fetch user' });
+            }
+        }
+
+        async function fetchAllTodos() {
+            try {
+                const response = await fetch('http://localhost:5002/api/todos');
+                const todos = await response.json();
+                displayTodos(todos);
+            } catch (error) {
+                displayTodos({ error: 'Failed to fetch todos' });
+            }
+        }
+
+        async function fetchTodos() {
+            const username = document.getElementById('todoUsernameInput').value;
+            if (!username) return;
+            try {
+                const response = await fetch(`http://localhost:5002/api/todos/${username}`);
+                const todos = await response.json();
+                displayTodos(todos);
+            } catch (error) {
+                displayTodos({ error: 'Failed to fetch todos' });
+            }
+        }
+
+        function displayUsers(data) {
+            const output = document.getElementById('usersOutput');
+            if (data.error) {
+                output.innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                return;
+            }
+            if (Array.isArray(data)) {
+                output.innerHTML = data.map(user => 
+                    `<p>Username: ${user.username}, Email: ${user.email}</p>`
+                ).join('');
+            } else {
+                output.innerHTML = `<p>Username: ${data.username}, Email: ${data.email}</p>`;
+            }
+        }
+
+        function displayTodos(data) {
+            const output = document.getElementById('todosOutput');
+            if (data.error) {
+                output.innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                return;
+            }
+            output.innerHTML = data.map(todo => 
+                `<p>Task: ${todo.task}, Completed: ${todo.completed}, User: ${todo.username}</p>`
+            ).join('');
+        }
+    </script>
+</body>
+</html>
